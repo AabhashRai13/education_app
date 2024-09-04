@@ -18,7 +18,7 @@ abstract class Failure extends Equatable {
 }
 
 class CacheFailure extends Failure {
-  CacheFailure({required super.message,  super.statusCode = 500});
+  CacheFailure({required super.message, required super.statusCode});
 }
 
 class ServerFailure extends Failure {
