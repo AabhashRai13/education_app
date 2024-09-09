@@ -6,7 +6,6 @@ import 'package:education_app/src/on_boarding/data/repos/on_boarding_repo_impl.d
 import 'package:education_app/src/on_boarding/domain/repos/on_boarding_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-
 import 'on_boarding_repo_impl.mock.dart';
 
 void main() {
