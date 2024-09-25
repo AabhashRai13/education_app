@@ -12,8 +12,7 @@ void main() {
 
   setUp(() {
     sharedPreferences = MockSharedPreferences();
-    onBoardingLocalDataSource =
-        OnBoardingLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+    onBoardingLocalDataSource = OnBoardingLocalDataSrcImpl(sharedPreferences);
   });
 
   group('cacheFirstTimer', () {
@@ -55,7 +54,7 @@ void main() {
       verifyNoMoreInteractions(sharedPreferences);
     });
 
-    test('should return true if there is no data in storage', ()async{
+    test('should return true if there is no data in storage', () async {
       when(() => sharedPreferences.getBool(any())).thenReturn(null);
 
       final result = await onBoardingLocalDataSource.checkIfUserIsFirstTimer();

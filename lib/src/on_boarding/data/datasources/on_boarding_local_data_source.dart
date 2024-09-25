@@ -5,34 +5,32 @@ abstract class OnBoardingLocalDataSource {
   const OnBoardingLocalDataSource();
 
   Future<void> cacheFirstTimer();
+
   Future<bool> checkIfUserIsFirstTimer();
 }
 
 const kFirstTimerKey = 'first_timer';
 
-class OnBoardingLocalDataSourceImpl extends OnBoardingLocalDataSource {
-  const OnBoardingLocalDataSourceImpl({required this.sharedPreferences});
-  final SharedPreferences sharedPreferences;
+class OnBoardingLocalDataSrcImpl extends OnBoardingLocalDataSource {
+  const OnBoardingLocalDataSrcImpl(this._prefs);
+
+  final SharedPreferences _prefs;
 
   @override
   Future<void> cacheFirstTimer() async {
     try {
-      await sharedPreferences.setBool(kFirstTimerKey, false);
-    } catch (e) {
-      throw const CacheException(
-        message: 'Error caching first timer',
-      );
+      await _prefs.setBool(kFirstTimerKey, false);
+    } catch(e) {
+      throw CacheException(message: e.toString());
     }
   }
 
   @override
   Future<bool> checkIfUserIsFirstTimer() async {
     try {
-      return sharedPreferences.getBool(kFirstTimerKey) ?? true;
+      return _prefs.getBool(kFirstTimerKey) ?? true;
     } catch (e) {
-      throw const CacheException(
-        message: 'Error retrieving first timer',
-      );
+      throw CacheException(message: e.toString());
     }
   }
 }

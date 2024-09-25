@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '91969441606',
     projectId: 'education-app-a76d9',
     storageBucket: 'education-app-a76d9.appspot.com',
-    iosBundleId: 'com.example.educationApp',
+    iosBundleId: 'com.educationApp',
   );
 }

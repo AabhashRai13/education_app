@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_app/core/enums/update_user.dart';
 import 'package:education_app/core/errors/exceptions.dart';
 import 'package:education_app/core/utils/constants.dart';
-import 'package:education_app/core/utils/typdefs.dart';
+import 'package:education_app/core/utils/typedefs.dart';
 import 'package:education_app/src/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:education_app/src/auth/data/models/user_model.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
@@ -297,7 +297,7 @@ void main() {
         verify(() => mockUser.updateDisplayName(tFullName)).called(1);
 
         verifyNever(() => mockUser.updatePhotoURL(any()));
-        verifyNever(() => mockUser.updateEmail(any()));
+        verifyNever(() => mockUser.verifyBeforeUpdateEmail(any()));
         verifyNever(() => mockUser.updatePassword(any()));
 
         final userData =
@@ -311,7 +311,7 @@ void main() {
       'should update user email successfully when no [Exception] '
       'is thrown',
       () async {
-        when(() => mockUser.updateEmail(any()))
+        when(() => mockUser.verifyBeforeUpdateEmail(any()))
             .thenAnswer((_) async => Future.value());
 
         await dataSource.updateUser(
@@ -319,7 +319,7 @@ void main() {
           userData: tEmail,
         );
 
-        verify(() => mockUser.updateEmail(tEmail)).called(1);
+        verify(() => mockUser.verifyBeforeUpdateEmail(tEmail)).called(1);
 
         verifyNever(() => mockUser.updateDisplayName(any()));
         verifyNever(() => mockUser.updatePhotoURL(any()));
@@ -353,7 +353,7 @@ void main() {
 
         verifyNever(() => mockUser.updateDisplayName(any()));
         verifyNever(() => mockUser.updatePhotoURL(any()));
-        verifyNever(() => mockUser.updateEmail(any()));
+        verifyNever(() => mockUser.verifyBeforeUpdateEmail(any()));
         verifyNever(() => mockUser.updatePassword(any()));
       },
     );
@@ -383,7 +383,7 @@ void main() {
 
         verifyNever(() => mockUser.updateDisplayName(any()));
         verifyNever(() => mockUser.updatePhotoURL(any()));
-        verifyNever(() => mockUser.updateEmail(any()));
+        verifyNever(() => mockUser.verifyBeforeUpdateEmail(any()));
 
         final user = await cloudStoreClient
             .collection('users')
@@ -415,7 +415,7 @@ void main() {
 
         verifyNever(() => mockUser.updateDisplayName(any()));
         verifyNever(() => mockUser.updatePassword(any()));
-        verifyNever(() => mockUser.updateEmail(any()));
+        verifyNever(() => mockUser.verifyBeforeUpdateEmail(any()));
 
         expect(dbClient.storedFilesMap.isNotEmpty, isTrue);
       },

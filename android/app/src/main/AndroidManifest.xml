@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"package="com.education.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.education.app">
     <application
         android:label="education_app"
         android:name="${applicationName}"
